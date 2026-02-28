@@ -24,7 +24,9 @@
 
         public function __destruct() {
         }
-
+        public function setId($id) {
+            $this->id = $id;
+        }
         public function setContato_ID($contato_id) {
             $this->contato_id = $contato_id;
         }
@@ -33,6 +35,9 @@
         }
         public function setNumero($numero) {
             $this->numero = $numero;
+        }
+        public function getId():int {
+            return $this->id;
         }
         public function getContato_ID():int {
             return $this->contato_id;
@@ -87,5 +92,16 @@
 
             $this->db->executeQuery($stmt);
             echo "Telefone inserido!<br>";
-}        
+        }
+
+        public function editar(){
+            $stmt = "UPDATE telefones SET 
+                CONTATO_ID = '$this->contato_id',
+                TIPO = '$this->tipo',
+                NUMERO = '$this->numero'
+            WHERE ID = '$this->id'";
+
+            $this->db->executeQuery($stmt);
+            echo "Telefone atualizado!<br>";
+        }
     }

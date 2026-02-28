@@ -26,6 +26,9 @@
         public function __destruct() {
         }
 
+        public function setId($id) {
+            $this->id = $id;
+        }
         public function setNome($nome) {
             $this->nome = $nome;
         }
@@ -40,6 +43,9 @@
         }
         public function setAtivo($ativo) {
             $this->ativo = $ativo;
+        }
+        public function getId() {
+            return $this->id;
         }
         public function getNome():string {
             return $this->nome;
@@ -106,5 +112,18 @@
 
             $this->db->executeQuery($stmt);
             echo "Contato inserido!<br>";
+        }
+
+        public function editar(){
+            $stmt = "UPDATE contatos SET 
+                NOME = '$this->nome',
+                EMPRESA = '$this->empresa',
+                CARGO = '$this->cargo',
+                EMAIL = '$this->email',
+                ATIVO = '$this->ativo'
+             WHERE ID = '$this->id'";
+        
+            $this->db->executeQuery($stmt);
+            echo "Contato atualizado!<br>";
         }
     }

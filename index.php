@@ -6,10 +6,12 @@
     require_once __DIR__ . '/src/models/endereco.php';
 
     $contato = new Contato();
-    $contato-> setNome('Merlin de Espada');
-    $contato->setEmpresa('Alquimistas');
-    $contato->setCargo('Mago supremo');
-    $contato->setEmail('merlin_te_sola@gmail.com');
-    //$contato->inserir();
+    $contato->setId(1);
+    $contato-> setNome('Merlin de Lança Flamejante');
+    $contato->setEmpresa('Estocada');
+    $contato->setCargo('Mago de combate');
+    $contato->setEmail('merlin_te_sola_de_novo@gmail.com');
+    $contato->setAtivo(0);
+    $contato->editar();
 
     $contato->getDados();

@@ -27,6 +27,9 @@
         public function __destruct() {
         }
 
+        public function setId($id) {
+            $this->id = $id;
+        }
         public function setContato_ID($contato_id) {
             $this->contato_id = $contato_id;
         }
@@ -44,6 +47,9 @@
         }
         public function setStatus($status) {
             $this->status = $status;    
+        }
+        public function getId(): int {
+            return $this->id;
         }
         public function getContato_ID(): int {
             return $this->contato_id;
@@ -97,14 +103,14 @@
                 $this->setDataVisita($dados['DATA_VISITA']);
                 $this->setHoraVisita($dados['HORA_VISITA']);
                 $this->setAssunto($dados['ASSUNTO']);
-                $this->setobservacoes($dados['OBSERVACOES']);
+                $this->setObservacoes($dados['OBSERVACOES']);
                 $this->setStatus($dados['STATUS']);
 
                 echo "Contato_ID..:" . $this->getContato_ID() . "<br>";
                 echo "Data_Visita.:" . $this->getDataVisita() . "<br>";
                 echo "Hora_Visita.:" . $this->getHoraVisita() . "<br>";
                 echo "Assunto.....:" . $this->getAssunto() . "<br>";
-                echo "Observações.:" . $this->getobservacoes() . "<br>";
+                echo "Observações.:" . $this->getObservacoes() . "<br>";
                 echo "Status......:" . $this->getStatus() . "<br>";
             }
 
@@ -116,5 +122,19 @@
 
             $this->db->executeQuery($stmt);
             echo "Visita inserida!<br>";
+        }
+
+        public function editar(){
+            $stmt = "UPDATE visitas SET 
+                CONTATO_ID = '$this->contato_id', 
+                DATA_VISITA = '$this->data_visita', 
+                HORA_VISITA = '$this->hora_visita', 
+                ASSUNTO = '$this->assunto', 
+                OBSERVACOES = '$this->observacoes', 
+                `STATUS` = '$this->status' 
+            WHERE ID = '$this->id'";
+
+            $this->db->executeQuery($stmt);
+            echo "Visita atualizado!<br>";
         }
     }

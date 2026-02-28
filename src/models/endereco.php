@@ -31,6 +31,9 @@
         public function __destruct() {
         }
 
+        public function setId($id) {
+            $this->id = $id;
+        }
         public function setContato_ID($contato_id) {
             $this->contato_id = $contato_id;
         }
@@ -60,6 +63,9 @@
         }
         public function setPais($pais) {
             $this->pais = $pais;
+        }
+        public function getId(): int {
+            return $this->id;
         }
         public function getContato_ID(): int {
             return $this->contato_id;
@@ -158,4 +164,23 @@
             $this->db->executeQuery($stmt);
             echo "Endereço inserido!<br>";
         }
+        
+        public function editar(){
+            $stmt = "UPDATE enderecos SET 
+                CONTATO_ID = '$this->contato_id',
+                TIPO = '$this->tipo',
+                LOGRADOURO = '$this->logradouro',
+                NUMERO = '$this->numero',
+                COMPLEMENTO = '$this->complemento',
+                BAIRRO = '$this->bairro',
+                CIDADE = '$this->cidade',
+                UF = '$this->uf',
+                CEP = '$this->cep', 
+                PAIS = '$this->pais'
+            WHERE ID = '$this->id'";
+
+            $this->db->executeQuery($stmt);
+            echo "Endereço atualizado!<br>";
+        }
+
     }
